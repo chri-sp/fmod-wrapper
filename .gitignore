@@ -1,0 +1,33 @@
+# Build output directories
+bin/
+obj/
+x64/
+Debug/
+Release/
+
+# Visual Studio local user settings
+.vs/
+.idea/
+*.suo
+*.user
+*.VC.db
+*.opendb
+
+# Intermediate compilation files
+*.obj
+*.pdb
+*.ilk
+*.ipch
+*.log
+*.tlog
+*.tmp
+
+# Backup and temporary files
+*.~*
+*~
+*.bak
+*.cache
+*.ncb
+
+# Include everything in FMOD folder
+!FMOD/**
