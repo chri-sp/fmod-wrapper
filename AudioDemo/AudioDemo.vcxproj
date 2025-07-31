@@ -107,9 +107,13 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)FMOD\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)FMOD\lib\x64;$(SolutionDir)x64\Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>fmod_vc.lib;AudioWrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>if exist "$(SolutionDir)FMOD\lib\x64\fmod.dll" xcopy "$(SolutionDir)FMOD\lib\x64\fmod.dll" "$(OutDir)" /Y
+if exist "$(ProjectDir)audio\" xcopy "$(ProjectDir)audio\*" "$(OutDir)audio\" /Y /I</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
