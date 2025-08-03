@@ -66,3 +66,23 @@ void AudioSystem::playSound(const std::string& name) {
         std::cerr << "Sound not found: " << name << "\n";
     }
 }
+
+
+void AudioSystem::pauseSound(const std::string& name, bool pause) {
+    auto it = mChannels.find(name);
+    if (it != mChannels.end() && it->second) {
+        it->second->setPaused(pause);
+    } else {
+        std::cerr << "Cannot pause: " << name << "\n";
+    }
+}
+
+void AudioSystem::stopSound(const std::string& name) {
+    auto it = mChannels.find(name);
+    if (it != mChannels.end() && it->second) {
+        it->second->stop();
+    } else {
+        std::cerr << "Cannot stop: " << name << "\n";
+    }
+}
+
