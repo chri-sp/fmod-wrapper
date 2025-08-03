@@ -40,9 +40,23 @@ void AudioSystem::shutdown() {
     }
 }
 
-bool AudioSystem::loadSound(const std::string& name, const std::string& path) {
+bool AudioSystem::loadSound(const std::string& name, const std::string& path, bool loop) {
+
+    // Release existing sound with the same name
+    auto existing = mSounds.find(name);
+    if (existing != mSounds.end() && existing->second) {
+        existing->second->release();
+    }
+    
     FMOD::Sound* sound = nullptr;
-    if (mSystem->createSound(path.c_str(), FMOD_DEFAULT, nullptr, &sound) != FMOD_OK) {
+
+    FMOD_MODE mode = FMOD_DEFAULT;
+    if (loop)
+        mode |= FMOD_LOOP_NORMAL;
+    else 
+        mode |= FMOD_LOOP_OFF;
+
+    if (mSystem->createSound(path.c_str(), mode, nullptr, &sound) != FMOD_OK) {
         std::cerr << "Unable to load: " << path << "\n";
         return false;
     }
