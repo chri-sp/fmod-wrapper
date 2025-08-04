@@ -18,6 +18,8 @@ public:
     void pauseSound(const std::string& name, bool pause);
     void stopSound(const std::string& name);
 
+    void setPan(const std::string& name, float pan);
+    void setVolume(const std::string& name, float volume);
 
 private:
     FMOD::System* mSystem = nullptr;

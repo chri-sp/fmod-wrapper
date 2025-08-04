@@ -100,3 +100,25 @@ void AudioSystem::stopSound(const std::string& name) {
     }
 }
 
+void AudioSystem::setPan(const std::string& name, float pan) {
+    auto it = mChannels.find(name);
+    if (it != mChannels.end() && it->second) {
+        // Clamp pan between -1.0 (left) and 1.0 (right)
+        pan = std::max(-1.0f, std::min(1.0f, pan));
+        it->second->setPan(pan);
+    } else {
+        std::cerr << "Cannot set pan: " << name << "\n";
+    }
+}
+
+void AudioSystem::setVolume(const std::string& name, float volume) {
+    auto it = mChannels.find(name);
+    if (it != mChannels.end() && it->second) {
+        // Clamp volume between 0.0 (mute) and 1.0 (max)
+        volume = std::max(0.0f, std::min(1.0f, volume));
+        it->second->setVolume(volume);
+    } else {
+        std::cerr << "Cannot set volume: " << name << "\n";
+    }
+}
+

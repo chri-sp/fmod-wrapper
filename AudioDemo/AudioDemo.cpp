@@ -4,13 +4,15 @@
 int main()
 {
     AudioSystem audio;
-    
-    if (!audio.init()) {
+
+    if (!audio.init())
+    {
         std::cerr << "Init failed.\n";
         return -1;
     }
-/*
-//  TEST load, play, pause, stop
+
+    /*
+    // TEST load, play, pause, stop
     audio.loadSound("sound", "audio/track1.mp3"); 
     audio.playSound("sound");
 
@@ -25,8 +27,9 @@ int main()
     std::cout << "Resumed. Press ENTER to stop...\n";
     std::cin.get();
     audio.stopSound("sound");
-*/
+    */
 
+    /*
     // TEST loop and one-shot
     audio.loadSound("loop", "audio/track2.mp3", true);
     audio.playSound("loop");
@@ -40,7 +43,21 @@ int main()
 
     audio.loadSound("one-shot", "audio/track2.mp3", false);
     audio.playSound("one-shot");
+    */
 
+    // TEST pan, volume
+    audio.loadSound("sound", "audio/track1.mp3", true);
+    audio.playSound("sound");
+
+    std::cout << "Press ENTER to reduce volume...\n";
+    std::cin.get();
+    audio.setVolume("sound", 0.3f);
+
+    std::cout << "Press ENTER to pan right...\n";
+    std::cin.get();
+    audio.setVolume("sound", 1.f);
+    audio.setPan("sound", 1.f); 
+    
     std::cout << "Press ENTER to exit...\n";
     std::cin.get();
 
