@@ -21,6 +21,8 @@ public:
     void setPan(const std::string& name, float pan);
     void setVolume(const std::string& name, float volume);
 
+    void update();
+
 private:
     FMOD::System* mSystem = nullptr;
     std::map<std::string, FMOD::Sound*> mSounds;

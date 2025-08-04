@@ -125,3 +125,8 @@ void AudioSystem::setVolume(const std::string& name, float volume) {
     }
 }
 
+void AudioSystem::update() {
+    if (mSystem) {
+        mSystem->update();
+    }
+}
