@@ -12,7 +12,7 @@ public:
     bool init();
     void shutdown();
 
-    bool loadSound(const std::string& name, const std::string& path, bool loop = false);
+    bool loadSound(const std::string& name, const std::string& path, bool loop = false, bool stream = false);
     void playSound(const std::string& name);
 
     void pauseSound(const std::string& name, bool pause);
